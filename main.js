@@ -41,7 +41,7 @@ const sphere = new THREE.Mesh(geometry, material)
 scene.add(sphere)
 
 function changeVideo() {
-    currentIndex = (currentIndex + 1) % src.length; // Increment index and wrap around
+    currentIndex = (currentIndex + 1) % src.length; // Increment index and wrap around > permet de boucler entre les vidéos sans dépasser les limites du tableau.
     video.src = src[currentIndex]; // Update video source
     video.play(); // Start playing the new video
 }
@@ -50,12 +50,8 @@ function changeVideo() {
 const btn = document.createElement('button');
 btn.textContent = 'Change Video';
 btn.style.position = 'absolute';
-btn.style.top = '20px';
-btn.style.left = '20px';
-btn.style.padding = '10px 20px';
-btn.style.background = 'rgba(0, 0, 0, 0.5)';
-btn.style.color = '#fff';
-btn.style.border = 'none';
+btn.style.top = '900px';
+btn.style.left = '900px';
 btn.style.cursor = 'pointer';
 btn.style.zIndex = '10'; // Ensure it appears on top of everything
 document.body.appendChild(btn);

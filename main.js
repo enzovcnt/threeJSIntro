@@ -1,12 +1,12 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { DeviceOrientationControls } from 'three/examples/jsm/controls/DeviceOrientationControls.js'
+//import { DeviceOrientationControls } from 'three/addons/controls/DeviceOrientationControls.js';
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 100)
 const renderer = new THREE.WebGLRenderer()
 const controls = new OrbitControls(camera, renderer.domElement)
-const controlsTel = new DeviceOrientationControls(camera);
+
 const radius = 30
 controls.enablePan = false
 controls.enableZoom = false
@@ -59,24 +59,14 @@ btn.addEventListener('click', () => {
 
 function animate() {
     requestAnimationFrame(animate)
-    controlsTel.update()
+
 
     renderer.render(scene, camera)
 }
 
 animate()
 
-if (typeof DeviceOrientationControls !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-    DeviceOrientationEvent.requestPermission()
-        .then(permissionState => {
-            if (permissionState === 'granted') {
-                controls.connect();
-            }
-        })
-        .catch(console.error)
-} else {
-    controls.connect();
-}
+
 
 window.addEventListener('resize', onWindowResize)
 

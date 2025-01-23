@@ -18,7 +18,7 @@ spherical.makeSafe()
 camera.position.setFromSpherical(spherical)
 
 
-let src = ['https://s.bepro11.com/vr-video-sample.mp4', 'video/video2.mp4']
+let src = ['https://s.bepro11.com/vr-video-sample.mp4', 'https://enzovcnt.github.io/threeJSIntro/video/video2.mp4']
 let currentIndex = 0;
 
 const video = document.createElement('video')

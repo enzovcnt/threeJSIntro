@@ -81,3 +81,42 @@ function onWindowResize() {
 }
 
 
+let testVideo = document.createElement('video');
+testVideo.style.width = document.width + 'px';
+testVideo.style.height = document.height + 'px';
+testVideo.autoplay = true;
+testVideo.muted = true;
+testVideo.playsInline = true;
+
+let facingMode = "user";
+let constraints = {
+    audio: false,
+    video: {
+        facingMode: facingMode
+    }
+}
+
+navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+    video.srcObject = stream;
+});
+
+document.body.appendChild(testVideo);
+
+video.addEventListener('click', function() {
+    if (facingMode === "user") {
+        facingMode = "environment";
+    } else {
+        facingMode = "user";
+    }
+
+    constraints = {
+        audio: false,
+        video: {
+            facingMode: facingMode
+        }
+    }
+
+    navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+        video.srcObject = stream;
+    });
+});

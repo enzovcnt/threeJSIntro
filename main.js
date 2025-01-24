@@ -21,12 +21,14 @@ camera.position.setFromSpherical(spherical)
 let src = ['https://s.bepro11.com/vr-video-sample.mp4', 'https://enzovcnt.github.io/threeJSIntro/video/video2.mp4']
 let currentIndex = 0;
 
+let isCameraActive = false;
+
 const video = document.createElement('video')
 video.src = src[0]
 video.loop = true
 video.muted = true
 video.playsInline = true
-video.crossOrigin = 'anonymous'
+//video.crossOrigin = 'anonymous'
 video.play()
 
 renderer.setSize(window.innerWidth, window.innerHeight)
@@ -64,6 +66,13 @@ btn.addEventListener('click', () => {
 
 function animate() {
     requestAnimationFrame(animate)
+
+    if (isCameraActive) {
+        sphere.visible = false; // Cache la sphère
+    } else {
+        sphere.visible = true; // Affiche la sphère
+    }
+
     renderer.render(scene, camera)
 }
 
@@ -80,6 +89,8 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight)
 }
 
+
+//activation caméra/webcam
 
 let testVideo = document.createElement('video');
 testVideo.style.width = document.width + 'px';
@@ -118,5 +129,7 @@ video.addEventListener('click', function() {
 
     navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
         video.srcObject = stream;
+        isCameraActive = true;
     });
 });
+
